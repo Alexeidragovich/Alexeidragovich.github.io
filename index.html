@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>بورتوفوليو | أمن المعلومات</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     SVG ICONS SPRITE
+══════════════════════════════════════════ -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="ic-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+  </symbol>
+  <symbol id="ic-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+  </symbol>
+  <symbol id="ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+  </symbol>
+  <symbol id="ic-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+    <line x1="1" y1="1" x2="23" y2="23"/>
+  </symbol>
+  <symbol id="ic-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+  </symbol>
+  <symbol id="ic-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+  </symbol>
+  <symbol id="ic-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+  </symbol>
+  <symbol id="ic-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+    <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
+  </symbol>
+  <symbol id="ic-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+  </symbol>
+  <symbol id="ic-logout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+  </symbol>
+  <symbol id="ic-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+    <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
+  </symbol>
+  <symbol id="ic-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+    <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+  </symbol>
+  <symbol id="ic-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+    <circle cx="12" cy="13" r="4"/>
+  </symbol>
+  <symbol id="ic-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+  </symbol>
+  <symbol id="ic-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <polyline points="3 6 5 6 21 6"/>
+    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+  </symbol>
+  <symbol id="ic-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+  </symbol>
+  <symbol id="ic-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+  </symbol>
+  <symbol id="ic-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+  </symbol>
+  <symbol id="ic-github" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.57v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.08 1.85 2.83 1.31 3.52 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+  </symbol>
+  <symbol id="ic-linkedin" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/>
+  </symbol>
+  <symbol id="ic-twitter" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </symbol>
+  <symbol id="ic-hackthebox" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M11.996 0L3 4.845v9.693l8.996 4.845L21 14.538V4.845zm-.001 1.654l7.228 3.893v7.81l-7.228 3.893L4.773 13.357V5.547zM12 6.5L8 8.804V13.2L12 15.5l4-2.3V8.804z"/>
+  </symbol>
+  <symbol id="ic-telegram" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+  </symbol>
+  <symbol id="ic-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+  </symbol>
+  <symbol id="ic-tryhackme" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M10.705 0C7.54 0 4.902 2.116 4.08 5.012A3.994 3.994 0 0 0 0 9.014c0 2.208 1.795 4.004 4.004 4.004h.223A5.985 5.985 0 0 0 10.008 18a5.985 5.985 0 0 0 5.787-4.982H15.995a4.004 4.004 0 0 0 0-8.008 3.997 3.997 0 0 0-.076 0A5.985 5.985 0 0 0 10.705 0z"/>
+  </symbol>
+  <symbol id="ic-type" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/>
+  </symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <polyline points="20 6 9 17 4 12"/>
+  </symbol>
+</svg>
+
+<!-- ══════════════════════════════════════════
+     CANVAS — خلفية متحركة
+══════════════════════════════════════════ -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- ══════════════════════════════════════════
+     PAGE: USER LOGIN
+══════════════════════════════════════════ -->
+<div id="page-user-login" class="page page--login active">
+  <div class="login-center">
+    <div class="login-brand">
+      <div class="brand-icon">
+        <svg class="icon icon--lg"><use href="#ic-shield"/></svg>
+      </div>
+      <h1 class="brand-name" id="brand-name">أحمد الطيب</h1>
+      <p class="brand-sub" id="brand-title">مهندس أمن المعلومات</p>
+    </div>
+    <div class="glass-card">
+      <div class="card-header">
+        <svg class="icon icon--sm icon--muted"><use href="#ic-lock"/></svg>
+        <span>دخول الزوار</span>
+      </div>
+      <div class="field-group">
+        <label class="field-label">كلمة المرور</label>
+        <div class="input-wrap">
+          <input type="password" id="user-pass" class="field-input" placeholder="أدخل كلمة المرور"
+            onkeydown="if(event.key==='Enter') Auth.loginUser()"/>
+          <button class="eye-toggle" onclick="UI.toggleEye('user-pass', this)" type="button">
+            <svg class="icon icon--sm"><use href="#ic-eye"/></svg>
+          </button>
+        </div>
+        <span class="field-error" id="user-err"></span>
+      </div>
+      <button class="btn btn--primary btn--full" onclick="Auth.loginUser()">دخول</button>
+      <div class="card-footer-link">
+        <span>لوحة الإدارة؟</span>
+        <button class="link-btn" onclick="Pages.show('admin-login')">دخول المدير</button>
+      </div>
+    </div>
+    <p class="ssl-badge">
+      <svg class="icon icon--xs"><use href="#ic-lock"/></svg>
+      محمي بتشفير SSL / TLS
+    </p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: ADMIN LOGIN
+══════════════════════════════════════════ -->
+<div id="page-admin-login" class="page page--admin-login">
+  <div class="grid-overlay"></div>
+  <div class="login-center">
+    <div class="restricted-badge">
+      <span class="restricted-dot"></span>
+      RESTRICTED — AUTHORIZED PERSONNEL ONLY
+    </div>
+    <div class="terminal-card">
+      <div class="terminal-bar">
+        <span class="t-dot t-red"></span>
+        <span class="t-dot t-yellow"></span>
+        <span class="t-dot t-green"></span>
+        <span class="t-title">root@cybersec — admin</span>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-brand">
+          <div class="brand-icon brand-icon--accent">
+            <svg class="icon icon--lg"><use href="#ic-terminal"/></svg>
+          </div>
+          <h2>لوحة تحكم المدير</h2>
+          <p class="mono">ADMIN ACCESS ONLY</p>
+        </div>
+        <div class="terminal-prompt mono">$ sudo access --verify-credentials</div>
+        <div class="field-group">
+          <label class="field-label">كلمة مرور المدير</label>
+          <div class="input-wrap">
+            <input type="password" id="admin-pass" class="field-input field-input--mono"
+              placeholder="••••••••••••" onkeydown="if(event.key==='Enter') Auth.loginAdmin()"/>
+            <button class="eye-toggle" onclick="UI.toggleEye('admin-pass', this)" type="button">
+              <svg class="icon icon--sm"><use href="#ic-eye"/></svg>
+            </button>
+          </div>
+          <span class="field-error" id="admin-err"></span>
+        </div>
+        <button class="btn btn--accent btn--full" onclick="Auth.loginAdmin()">دخول لوحة التحكم</button>
+        <button class="btn btn--ghost btn--full" onclick="Pages.show('user-login')" style="margin-top:10px">
+          العودة لدخول الزوار
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: PORTFOLIO
+══════════════════════════════════════════ -->
+<div id="page-portfolio" class="page page--portfolio">
+
+  <!-- Cover -->
+  <div class="pf-cover" id="pf-cover">
+    <div class="pf-cover__pattern"></div>
+    <div class="pf-cover__code mono" id="cover-code"></div>
+    <button class="pf-cover__admin-btn" onclick="Pages.show('admin-login')">
+      <svg class="icon icon--sm"><use href="#ic-settings"/></svg>
+      الإدارة
+    </button>
+    <label class="pf-cover__upload" for="inp-cover">
+      <svg class="icon icon--sm"><use href="#ic-camera"/></svg>
+    </label>
+    <input type="file" id="inp-cover" accept="image/*" style="display:none" onchange="Upload.cover(this)"/>
+  </div>
+
+  <!-- Profile row -->
+  <div class="pf-wrap">
+    <div class="pf-profile-row">
+      <div class="pf-avatar" id="pf-avatar">
+        <svg class="icon icon--xl icon--muted"><use href="#ic-user"/></svg>
+        <label class="pf-avatar__upload" for="inp-avatar">
+          <svg class="icon icon--xs"><use href="#ic-camera"/></svg>
+        </label>
+        <input type="file" id="inp-avatar" accept="image/*" style="display:none" onchange="Upload.avatar(this)"/>
+      </div>
+      <div class="pf-info">
+        <h1 class="pf-name" id="pf-name">أحمد الطيب</h1>
+        <p class="pf-title" id="pf-title-disp">مهندس أمن المعلومات</p>
+        <div class="pf-meta">
+          <span class="meta-item" id="pf-location-disp">
+            <svg class="icon icon--xs"><use href="#ic-map-pin"/></svg>
+            الخرطوم، السودان
+          </span>
+          <span class="meta-item" id="pf-email-disp">
+            <svg class="icon icon--xs"><use href="#ic-mail"/></svg>
+            ahmed@cybersec.io
+          </span>
+        </div>
+      </div>
+      <div class="pf-social" id="pf-social"></div>
+    </div>
+
+    <!-- Bio -->
+    <div class="pf-bio-card">
+      <span class="section-micro-label">نبذة تعريفية</span>
+      <p id="pf-bio">متخصص في اختبار الاختراق والأمن السيبراني. خبرة في حماية البنية التحتية والكشف عن الثغرات.</p>
+    </div>
+
+    <!-- Projects -->
+    <div class="pf-section-header">
+      <div class="section-title-line"></div>
+      <h2 class="section-title">المشاريع والأعمال</h2>
+      <span class="section-count" id="proj-count">0</span>
+    </div>
+    <div class="projects-grid" id="projects-grid"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: ADMIN
+══════════════════════════════════════════ -->
+<div id="page-admin" class="page page--admin">
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand__icon">
+        <svg class="icon"><use href="#ic-shield"/></svg>
+      </div>
+      <div>
+        <div class="sidebar-brand__title">لوحة التحكم</div>
+        <div class="sidebar-brand__sub mono">Admin Panel</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-tab="profile" onclick="Admin.switchTab('profile', this)">
+        <svg class="icon icon--sm"><use href="#ic-user"/></svg> الملف الشخصي
+      </button>
+      <button class="nav-item" data-tab="appearance" onclick="Admin.switchTab('appearance', this)">
+        <svg class="icon icon--sm"><use href="#ic-palette"/></svg> المظهر
+      </button>
+      <button class="nav-item" data-tab="social" onclick="Admin.switchTab('social', this)">
+        <svg class="icon icon--sm"><use href="#ic-globe"/></svg> التواصل
+      </button>
+      <button class="nav-item" data-tab="projects" onclick="Admin.switchTab('projects', this)">
+        <svg class="icon icon--sm"><use href="#ic-folder"/></svg> المشاريع
+      </button>
+      <button class="nav-item" data-tab="security" onclick="Admin.switchTab('security', this)">
+        <svg class="icon icon--sm"><use href="#ic-lock"/></svg> الأمان
+      </button>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="btn btn--danger btn--full" onclick="Auth.logout()">
+        <svg class="icon icon--sm"><use href="#ic-logout"/></svg> تسجيل الخروج
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1 class="admin-page-title" id="admin-page-title">الملف الشخصي</h1>
+      <button class="btn btn--primary btn--save" id="save-btn" onclick="Admin.save()">
+        <svg class="icon icon--sm"><use href="#ic-save"/></svg>
+        <span id="save-label">حفظ التغييرات</span>
+      </button>
+    </div>
+
+    <!-- TAB: Profile -->
+    <div id="tab-profile" class="tab-pane active">
+
+      <div class="settings-card">
+        <div class="settings-card__header">
+          <svg class="icon icon--sm"><use href="#ic-camera"/></svg> الصور
+        </div>
+        <div class="upload-grid">
+          <div>
+            <label class="field-label">صورة الغلاف</label>
+            <div class="upload-zone" id="uz-cover" onclick="document.getElementById('adm-cover').click()">
+              <svg class="icon icon--md icon--muted"><use href="#ic-camera"/></svg>
+              <span>رفع صورة الغلاف</span>
+            </div>
+            <input type="file" id="adm-cover" accept="image/*" style="display:none" onchange="Upload.adminCover(this)"/>
+          </div>
+          <div>
+            <label class="field-label">الصورة الشخصية</label>
+            <div class="upload-zone" id="uz-avatar" onclick="document.getElementById('adm-avatar').click()">
+              <svg class="icon icon--md icon--muted"><use href="#ic-user"/></svg>
+              <span>رفع الصورة الشخصية</span>
+            </div>
+            <input type="file" id="adm-avatar" accept="image/*" style="display:none" onchange="Upload.adminAvatar(this)"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-card">
+        <div class="settings-card__header">
+          <svg class="icon icon--sm"><use href="#ic-user"/></svg> المعلومات الشخصية
+        </div>
+        <div class="field-group"><label class="field-label">الاسم الكامل</label>
+          <input class="field-input" id="f-name" placeholder="الاسم الكامل"/></div>
+        <div class="field-group"><label class="field-label">المسمى الوظيفي</label>
+          <input class="field-input" id="f-title" placeholder="المسمى الوظيفي"/></div>
+        <div class="fields-row">
+          <div class="field-group"><label class="field-label">الموقع الجغرافي</label>
+            <input class="field-input" id="f-location" placeholder="المدينة، الدولة"/></div>
+          <div class="field-group"><label class="field-label">البريد الإلكتروني</label>
+            <input class="field-input" id="f-email" type="email" placeholder="email@domain.com"/></div>
+        </div>
+        <div class="field-group"><label class="field-label">النبذة التعريفية</label>
+          <textarea class="field-input field-input--textarea" id="f-bio" rows="4" placeholder="اكتب نبذة مختصرة عنك..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: Appearance -->
+    <div id="tab-appearance" class="tab-pane">
+      <div class="settings-card">
+        <div class="settings-card__header">
+          <svg class="icon icon--sm"><use href="#ic-palette"/></svg> الألوان
+        </div>
+        <div class="colors-grid">
+          <div class="color-field-wrap">
+            <label class="field-label">اللون الرئيسي</label>
+            <div class="color-field"><input type="color" id="c-primary" oninput="Admin.liveColor(this,'--primary')"/>
+              <span class="mono" id="c-primary-val">#00ff88</span></div>
+          </div>
+          <div class="color-field-wrap">
+            <label class="field-label">لون التمييز</label>
+            <div class="color-field"><input type="color" id="c-accent" oninput="Admin.liveColor(this,'--accent')"/>
+              <span class="mono" id="c-accent-val">#00aaff</span></div>
+          </div>
+          <div class="color-field-wrap">
+            <label class="field-label">خلفية الصفحة</label>
+            <div class="color-field"><input type="color" id="c-bg" oninput="Admin.liveColor(this,'--bg')"/>
+              <span class="mono" id="c-bg-val">#0a0e1a</span></div>
+          </div>
+          <div class="color-field-wrap">
+            <label class="field-label">خلفية البطاقات</label>
+            <div class="color-field"><input type="color" id="c-card" oninput="Admin.liveColor(this,'--card-bg')"/>
+              <span class="mono" id="c-card-val">#111827</span></div>
+          </div>
+          <div class="color-field-wrap">
+            <label class="field-label">لون النص</label>
+            <div class="color-field"><input type="color" id="c-text" oninput="Admin.liveColor(this,'--text')"/>
+              <span class="mono" id="c-text-val">#e2e8f0</span></div>
+          </div>
+          <div class="color-field-wrap">
+            <label class="field-label">النص الثانوي</label>
+            <div class="color-field"><input type="color" id="c-muted" oninput="Admin.liveColor(this,'--muted')"/>
+              <span class="mono" id="c-muted-val">#94a3b8</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="settings-card">
+        <div class="settings-card__header">
+          <svg class="icon icon--sm"><use href="#ic-type"/></svg> الخط
+        </div>
+        <div class="fonts-grid" id="fonts-grid"></div>
+      </div>
+    </div>
+
+    <!-- TAB: Social -->
+    <div id="tab-social" class="tab-pane">
+      <div class="settings-card">
+        <div class="settings-card__header">
+          <svg class="icon icon--sm"><use href="#ic-globe"/></svg> روابط التواصل الاجتماعي
+        </div>
+        <div id="social-fields"></div>
+      </div>
+    </div>
+
+    <!-- TAB: Projects -->
+    <div id="tab-projects" class="tab-pane">
+      <div class="settings-card settings-card--accent">
+        <div class="settings-card__header">
+          <svg class="icon icon--sm"><use href="#ic-plus"/></svg> إضافة مشروع جديد
+        </div>
+        <div class="field-group"><label class="field-label">اسم المشروع</label>
+          <input class="field-input" id="np-name" placeholder="اسم المشروع"/></div>
+        <div class="field-group"><label class="field-label">وصف المشروع</label>
+          <textarea class="field-input field-input--textarea" id="np-desc" rows="3" placeholder="وصف مختصر..."></textarea></div>
+        <div class="fields-row">
+          <div class="field-group"><label class="field-label">رابط المشروع</label>
+            <input class="field-input" id="np-link" placeholder="https://github.com/..."/></div>
+          <div class="field-group"><label class="field-label">الوسوم (بفاصلة)</label>
+            <input class="field-input" id="np-tags" placeholder="Python, CTF, Security"/></div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">صورة المشروع</label>
+          <div class="upload-zone" id="uz-np" onclick="document.getElementById('np-img').click()">
+            <svg class="icon icon--md icon--muted"><use href="#ic-camera"/></svg>
+            <span>رفع صورة المشروع (اختياري)</span>
+          </div>
+          <input type="file" id="np-img" accept="image/*" style="display:none" onchange="Upload.projectImg(this)"/>
+        </div>
+        <button class="btn btn--accent btn--full" onclick="Admin.addProject()">
+          <svg class="icon icon--sm"><use href="#ic-plus"/></svg> إضافة المشروع
+        </button>
+      </div>
+      <div id="projects-admin-list"></div>
+    </div>
+
+    <!-- TAB: Security -->
+    <div id="tab-security" class="tab-pane">
+      <div class="alert alert--warn">
+        تأكد من استخدام كلمات مرور قوية. هذه الكلمات تُحفظ محلياً في المتصفح.
+      </div>
+      <div class="settings-card">
+        <div class="settings-card__header">
+          <svg class="icon icon--sm"><use href="#ic-lock"/></svg> كلمات المرور
+        </div>
+        <div class="field-group"><label class="field-label">كلمة مرور الزوار</label>
+          <input class="field-input" id="f-userpass" type="password" placeholder="كلمة مرور الزوار"/></div>
+        <div class="field-group"><label class="field-label">كلمة مرور المدير</label>
+          <input class="field-input" id="f-adminpass" type="password" placeholder="كلمة مرور المدير"/></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
