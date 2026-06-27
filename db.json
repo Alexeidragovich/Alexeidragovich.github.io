@@ -1,0 +1,63 @@
+{
+  "profile": {
+    "name": "أحمد الطيب",
+    "title": "مهندس أمن المعلومات",
+    "bio": "متخصص في اختبار الاختراق والأمن السيبراني. خبرة في حماية البنية التحتية والكشف عن الثغرات الأمنية.",
+    "location": "الخرطوم، السودان",
+    "email": "ahmed.tayeb@protonmail.com"
+  },
+  "credentials": {
+    "userPass": "user123",
+    "adminPass": "admin123"
+  },
+  "images": {
+    "coverImg": null,
+    "avatarImg": null
+  },
+  "theme": {
+    "colors": {
+      "primary": "#00ff88",
+      "accent": "#00aaff",
+      "bg": "#0a0e1a",
+      "card": "#111827",
+      "text": "#e2e8f0",
+      "muted": "#94a3b8"
+    },
+    "font": "Cairo"
+  },
+  "social": {
+    "github": "https://github.com/Alexeidragovich",
+    "linkedin": "https://linkedin.com/in/ahmed-tayeb-yosof",
+    "twitter": "",
+    "hackthebox": "",
+    "tryhackme": "",
+    "telegram": "",
+    "website": ""
+  },
+  "projects": [
+    {
+      "id": 1,
+      "name": "نظام كشف التسلل المتقدم",
+      "desc": "نظام IDS/IPS قائم على الذكاء الاصطناعي للكشف عن الهجمات الصفرية في الوقت الفعلي بدقة 97%.",
+      "link": "#",
+      "tags": ["Python", "AI", "IDS"],
+      "img": null
+    },
+    {
+      "id": 2,
+      "name": "اختبار اختراق — بنك وطني",
+      "desc": "اكتشاف 23 ثغرة أمنية حرجة في البنية التحتية المصرفية وتقديم خطة علاجية مفصلة.",
+      "link": "#",
+      "tags": ["Pentest", "CVE", "Banking"],
+      "img": null
+    },
+    {
+      "id": 3,
+      "name": "NetScan Pro",
+      "desc": "أداة مفتوحة المصدر لتحليل حركة الشبكة واكتشاف الأجهزة غير المصرح بها.",
+      "link": "#",
+      "tags": ["Rust", "Network", "OSINT"],
+      "img": null
+    }
+  ]
+}
