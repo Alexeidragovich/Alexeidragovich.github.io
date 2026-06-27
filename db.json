@@ -1,30 +1,22 @@
 {
-  "profile": {
-    "name": "أحمد الطيب",
-    "title": "مهندس أمن المعلومات",
-    "bio": "متخصص في اختبار الاختراق والأمن السيبراني. خبرة في حماية البنية التحتية والكشف عن الثغرات الأمنية.",
-    "location": "الخرطوم، السودان",
-    "email": "ahmed.tayeb@protonmail.com"
+  "name": "أحمد الطيب",
+  "title": "مهندس أمن المعلومات",
+  "bio": "متخصص في اختبار الاختراق والأمن السيبراني. خبرة في حماية البنية التحتية والكشف عن الثغرات الأمنية.",
+  "location": "الخرطوم، السودان",
+  "email": "ahmed.tayeb@protonmail.com",
+  "userPass": "user123",
+  "adminPass": "admin123",
+  "coverImg": null,
+  "avatarImg": null,
+  "colors": {
+    "primary": "#00ff88",
+    "accent": "#00aaff",
+    "bg": "#0a0e1a",
+    "card": "#111827",
+    "text": "#e2e8f0",
+    "muted": "#94a3b8"
   },
-  "credentials": {
-    "userPass": "user123",
-    "adminPass": "admin123"
-  },
-  "images": {
-    "coverImg": null,
-    "avatarImg": null
-  },
-  "theme": {
-    "colors": {
-      "primary": "#00ff88",
-      "accent": "#00aaff",
-      "bg": "#0a0e1a",
-      "card": "#111827",
-      "text": "#e2e8f0",
-      "muted": "#94a3b8"
-    },
-    "font": "Cairo"
-  },
+  "font": "Cairo",
   "social": {
     "github": "https://github.com/Alexeidragovich",
     "linkedin": "https://linkedin.com/in/ahmed-tayeb-yosof",
