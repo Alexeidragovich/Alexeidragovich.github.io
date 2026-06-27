@@ -1,4 +1,4 @@
-/* ════════════════════════════════════════════
+                /* ════════════════════════════════════════════
    STATE — البيانات الافتراضية
 ════════════════════════════════════════════ */
 const DEFAULT_STATE = {
@@ -57,20 +57,34 @@ const DEFAULT_STATE = {
   ],
 };
 
-/* ── تحميل من localStorage ─────────────────── */
-function loadState() {
+let S = JSON.parse(JSON.stringify(DEFAULT_STATE));
+
+/* ── تحميل من db.json و localStorage ───── */
+async function loadState() {
+  try {
+    const res = await fetch('db.json');
+    if (!res.ok) throw new Error('فشل تحميل db.json');
+    const data = await res.json();
+    S = deepMerge(JSON.parse(JSON.stringify(DEFAULT_STATE)), data);
+  } catch (e) {
+    console.warn('⚠️ استخدام القيم الافتراضية (تعذر تحميل db.json):', e.message);
+    S = JSON.parse(JSON.stringify(DEFAULT_STATE));
+  }
+
+  // محاولة تحميل أي تغييرات سابقة من localStorage (تجاوز)
   try {
     const raw = localStorage.getItem('pf_state');
-    if (!raw) return JSON.parse(JSON.stringify(DEFAULT_STATE));
-    const saved = JSON.parse(raw);
-    return deepMerge(JSON.parse(JSON.stringify(DEFAULT_STATE)), saved);
-  } catch (_) {
-    return JSON.parse(JSON.stringify(DEFAULT_STATE));
-  }
+    if (raw) {
+      const saved = JSON.parse(raw);
+      S = deepMerge(S, saved);
+    }
+  } catch (_) {}
 }
 
 function saveState() {
-  try { localStorage.setItem('pf_state', JSON.stringify(S)); } catch (_) {}
+  try {
+    localStorage.setItem('pf_state', JSON.stringify(S));
+  } catch (_) {}
 }
 
 function deepMerge(target, source) {
@@ -84,8 +98,6 @@ function deepMerge(target, source) {
   }
   return target;
 }
-
-let S = loadState(); // state عالمي
 
 /* ════════════════════════════════════════════
    SOCIAL META — تعريف منصات التواصل
@@ -530,7 +542,6 @@ const Admin = (() => {
   function liveColor(input, varName) {
     document.documentElement.style.setProperty(varName, input.value);
     const key = varName.replace('--', '').replace('-bg', 'bg').replace('card-bg','card');
-    // sync state
     const map = { primary:'primary', accent:'accent', bg:'bg', 'card-bg':'card', text:'text', muted:'muted' };
     const stateKey = map[varName.replace('--','')];
     if (stateKey && S.colors[stateKey] !== undefined) S.colors[stateKey] = input.value;
@@ -711,12 +722,12 @@ function applyFont() {
 /* ════════════════════════════════════════════
    BOOT — التشغيل
 ════════════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadState();
   Matrix.init();
   applyColors();
   applyFont();
 
-  // set brand name on initial login page
   const bn = document.getElementById('brand-name');
   const bt = document.getElementById('brand-title');
   if (bn) bn.textContent = S.name;
